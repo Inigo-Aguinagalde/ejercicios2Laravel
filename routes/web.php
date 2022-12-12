@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\validacion;
+use Resources\views\layouts\master;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,16 @@ Route::get('/', function () {
 
 Route::get('/formulario', [validacion::class,'llamar'])->name('formulario');
 Route::post('/validacion', [validacion::class,'validacion'])->name('validacion');
+Route::post('/fimlValidation', [validacion::class,'filmValidator'])->name('fimlValidation');
+Route::get('/prueba',function() {
+    return View('layouts/master');
+});
+
+Route::get('/catalog/create',function(){
+    return View('paginas/NuevaPelicula');
+});
+
+Route::get('/catalog',function(){
+    return View('paginas/Catalogo');
+});
+

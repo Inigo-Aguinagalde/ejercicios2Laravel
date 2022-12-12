@@ -31,7 +31,11 @@
         @endif</p>
         <p><input type="radio" id="hombre" value="hombre" name="sexo" />Hombre</p>
         <p><input type="radio" id="mujer" value="mujer" name="sexo" />Mujer</p>
-        <p>Discapacidad <input type="number" name="discapacidad"></p>
+        <p>Discapacidad <input type="number"  max="100" name="discapacidad"></p>
+        <p>Codigo de seguridad <input type="number"  max="999" name="seguridad">
+        @if($errors->has('seguridad'))
+        <h4>{{$errors->first('seguridad')}}</h4>
+        @endif</p>
         <input type="submit" />
     </form>
 
