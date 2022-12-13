@@ -6,24 +6,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        table,tr,th{
+            border: 1px solid;
+        }
+    </style>
+
 </head>
 
 <body>
     <table>
         <tr>
-            <th>Nombre</th>
-            <th>Apellido</th>
-            <th>Email</th>
             <th>DNI</th>
+            <th>NOMBRE</th>
+            <th>APELLIDO</th>
+            <th>EMAIL</th>
             <th>Fecha nacimiento</th>
             <th>Discapacidad</th>
             <th>Sexo</th>
         </tr>
-        @for ($i = 0; $i < count($users); $i++)
+        @foreach ($users as $user)
              <tr>
-            <th>$users[{{$i}}]['name']</th>
+             <th>{{$user['DNI']}}</th>
+            <th>{{$user['name']}}</th>
+            <th>{{$user['lastName']}}</th>
+            <th>{{$user['email']}}</th>
+            <th>{{$user['date']}}</th>
+            <th>{{$user['Discapacidad']}}</th>
+            <th>{{$user['sexo']}}</th>
+           
             </tr>
-            @endfor
+            @endforeach
     </table>
 
 </body>

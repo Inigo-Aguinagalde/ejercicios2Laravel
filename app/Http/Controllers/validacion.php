@@ -118,7 +118,7 @@ class validacion extends Controller
     public function index()
     {
         $users = DB::table('usuario')->get();
-
-        return view('users', ['users' => $users]);
+        $result = json_decode($users, true);
+        return view('users', ['users' => $result]);
     }
 }
