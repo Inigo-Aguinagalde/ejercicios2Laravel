@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
+
 
 class validacion extends Controller
 {
@@ -55,7 +59,7 @@ class validacion extends Controller
             return Redirect::back()->withErrors(['dni' => 'El dni no es correcto, falla la letra']);
         }
 
-        if (strlen($direccion) != 23) {
+        if (strlen($direccion) != 24) {
             return Redirect::back()->withErrors(['direccion' => 'la direccion no es correcta']);
         }
 
@@ -69,8 +73,25 @@ class validacion extends Controller
 
         $validated = $request->validate([
             'nombre' => 'required|max:25',
-            'apellido' => 'required|max:50'
+            'apellido' => 'required|max:50',
+            'sexo' => 'required'
         ]);
+
+        $uuid = Str::uuid()->toString();
+
+        $usuario = usuario::make([  
+
+            'name' => $validated['nombre'],
+            'lastName' => $validated['apellido'],
+            'date' => $fecha_nacimiento,
+            'DNI' => $dni,
+            'email' => $direccion,
+            'sexo' => $validated['sexo'],
+            'Discapacidad' => $discapacidad
+
+        ]);
+
+        $usuario->save();
     }
 
 
@@ -83,14 +104,21 @@ class validacion extends Controller
             'actor2' => 'required|max:100',
             'fecha' => 'required',
             'genero' => 'required'
-            ]);
+        ]);
 
-            return View('paginas/Catalogo',['pelicula'=>$validated]);
+        return View('paginas/Catalogo', ['pelicula' => $validated]);
     }
 
 
     public function llamar()
     {
         return view('formulario');
+    }
+
+    public function index()
+    {
+        $users = DB::table('usuario')->get();
+
+        return view('users', ['users' => $users]);
     }
 }

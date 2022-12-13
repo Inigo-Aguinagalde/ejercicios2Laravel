@@ -36,7 +36,7 @@
         @if($errors->has('seguridad'))
         <h4>{{$errors->first('seguridad')}}</h4>
         @endif</p>
-        <input type="submit" />
+        <p><input type="submit"></p>
     </form>
 
 </body>

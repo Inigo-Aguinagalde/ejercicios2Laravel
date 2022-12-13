@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\validacion;
+use Faker\Core\Uuid;
 use Resources\views\layouts\master;
 
 /*
@@ -33,4 +34,6 @@ Route::get('/catalog/create',function(){
 Route::get('/catalog',function(){
     return View('paginas/Catalogo');
 });
+
+Route::get('/verPersona',[validacion::class,'index']);
 

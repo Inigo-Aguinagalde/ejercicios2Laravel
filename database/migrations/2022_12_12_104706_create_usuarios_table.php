@@ -2,9 +2,10 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CrearTabla extends Migration
+class CreateUsuariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,16 +15,18 @@ class CrearTabla extends Migration
     public function up()
     {
         Schema::create('usuario', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('last Name', 64);
+            $table->uuid('id');
+            $table->string('name')->nullable();;
+            $table->string('lastName', 64)->nullable();;
             $table->string('DNI')->nullable();
             $table->string('email')->nullable();
             $table->string('sexo')->nullable();
-            $table->string('Discapacidad ')->nullable();
-            $table->date('Fecha Nacimiento ')->nullable();
-           
+            $table->string('Discapacidad');
+            $table->date('date')->nullable();
+            
         });
+
+        
     }
 
     /**
